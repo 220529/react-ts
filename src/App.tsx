@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import ClassApp from "./components/ClassApp";
-import ImageApp from "./components/ImageApp";
-import InputApp from "./components/InputApp";
+import ClassApp from "@/components/ClassApp";
+import ImageApp from "@/components/ImageApp";
+import InputApp from "@/components/InputApp";
 
 const delay = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      console.log("delay.--==...");
+      console.log("delay.p");
       resolve("ok");
     }, 2000);
   });
@@ -25,8 +25,8 @@ function App() {
   return (
     <div>
       <h2>webpack5-react-ts2</h2>
-      {/* <ClassApp /> */}
-      {/* <ImageApp /> */}
+      <ClassApp />
+      <ImageApp />
       <InputApp />
     </div>
   );

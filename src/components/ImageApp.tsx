@@ -1,6 +1,6 @@
 import React from "react";
-import bImg from "../assets/b.png";
-import sImg from "../assets/s.png";
+import bImg from "@/assets/b.png";
+import sImg from "@/assets/s.png";
 
 function App() {
   return (
