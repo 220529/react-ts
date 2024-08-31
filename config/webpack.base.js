@@ -2,6 +2,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
   entry: path.join(__dirname, "../src/index.tsx"), // 入口文件
@@ -41,6 +42,10 @@ module.exports = {
               "@babel/preset-react",
               "@babel/preset-typescript",
             ],
+            plugins: [
+              process.env.NODE_ENV === "development" &&
+                require.resolve("react-refresh/babel"),
+            ].filter(Boolean),
           },
         },
       },
@@ -70,5 +75,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
-  ],
+    // 仅在开发环境中添加 ReactRefreshWebpackPlugin 插件
+    process.env.NODE_ENV === "development" && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean), // 过滤掉可能的 `false` 值,
 };
