@@ -3,6 +3,8 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const isDev = process.env.NODE_ENV === "development"; // 是否是开发模式
 
 module.exports = {
   entry: path.join(__dirname, "../src/index.tsx"), // 入口文件
@@ -64,12 +66,21 @@ module.exports = {
       {
         test: /.css$/, //匹配所有的 css 文件
         include: [path.resolve(__dirname, "../src")],
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: [
+          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+        ],
       },
       {
         test: /.less$/, //匹配所有的 less 文件
         include: [path.resolve(__dirname, "../src")],
-        use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
+        use: [
+          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "less-loader",
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
@@ -80,7 +91,7 @@ module.exports = {
           },
         },
         generator: {
-          filename: "images/[name][ext][query]", // 输出图片文件的路径
+          filename: "images/[name].[contenthash:8][ext]", // 输出图片文件的路径
         },
       },
     ],
@@ -94,7 +105,7 @@ module.exports = {
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
     // 仅在开发环境中添加 ReactRefreshWebpackPlugin 插件
-    process.env.NODE_ENV === "development" && new ReactRefreshWebpackPlugin(),
+    isDev && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean), // 过滤掉可能的 `false` 值,
   cache: {
     type: "filesystem", // 使用文件缓存
