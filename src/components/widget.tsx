@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "@ns-widget/components";
+import { Button, Modal } from "@ns-widget/styled";
 
 const App = () => {
   const [visible, setVisible] = useState(false);

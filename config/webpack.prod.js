@@ -26,6 +26,7 @@ module.exports = merge(baseConfig, {
       }),
     ],
     splitChunks: {
+      chunks: "all",
       // 分隔代码
       cacheGroups: {
         vendors: {

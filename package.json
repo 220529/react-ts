@@ -48,6 +48,7 @@
     "webpack-merge": "^6.0.1"
   },
   "dependencies": {
+    "@ns-widget/styled": "^0.0.9",
     "antd": "^5.20.4",
     "dumi2-app": "^0.0.3",
     "react": "^18.3.1",
