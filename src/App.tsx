@@ -2,6 +2,9 @@ import React, { lazy, Suspense, useState, useEffect } from "react";
 import ClassApp from "@/components/ClassApp";
 import ImageApp from "@/components/ImageApp";
 import InputApp from "@/components/InputApp";
+import DumiApp from "@/components/DumiApp";
+import AntdApp from "@/components/AntdApp";
+import Widget from "@/components/widget";
 import { Demo1, Demo2 } from "@/components";
 const LazyDemo = lazy(() => import("@/components/LazyDemo")); // 使用import语法配合react的Lazy动态引入资源
 // prefetch
@@ -52,9 +55,8 @@ function App() {
   }, []);
   return (
     <div>
-      <h2>webpack5-react-ts2</h2>
+      {/* <h2>webpack5-react-ts2</h2>
       <h2 onClick={onClick}>展示</h2>
-      {/* show为true时加载LazyDemo组件 */}
       {show && (
         <Suspense fallback={<span>loading...</span>}>
           <LazyDemo />
@@ -73,7 +75,10 @@ function App() {
       <ClassApp />
       <ImageApp />
       <InputApp />
-      <Demo1 />
+      <Demo1 /> */}
+      {/* <DumiApp /> */}
+      <AntdApp />
+      <Widget />
     </div>
   );
 }
